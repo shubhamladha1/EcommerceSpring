@@ -2,10 +2,8 @@ package com.example.ecommercespring.controllers;
 import com.example.ecommercespring.dto.CategoryDTO;
 import com.example.ecommercespring.services.ICategoryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/category")
@@ -15,6 +13,18 @@ public class CategoryController {
 
     CategoryController(ICategoryService _categoryService) {
         this.categoryService = _categoryService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() throws Exception{
+
+        List<CategoryDTO> result = this.categoryService.getAllCategories();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/name")
+    public ResponseEntity<CategoryDTO> getCategoriesByName(@RequestParam(required = false) String name) throws Exception{
+        return ResponseEntity.ok(this.categoryService.getCategoriesByName(name));
     }
 
     @PostMapping
