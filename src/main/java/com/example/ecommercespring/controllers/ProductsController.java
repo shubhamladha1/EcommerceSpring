@@ -1,26 +1,28 @@
 package com.example.ecommercespring.controllers;
 import com.example.ecommercespring.dto.ProductDTO;
-import com.example.ecommercespring.services.IProductsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import com.example.ecommercespring.services.IProductService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Products")
+@RequestMapping("api/products")
 public class ProductsController {
 
     //@Autowired will also help in resolving DI but it does not allow final keyword to be added and Autowired is not recommended
-    private final IProductsService productsService;
+    private final IProductService productService;
 
-    ProductsController(IProductsService _productsService) {
-         this.productsService = _productsService;
+    ProductsController(IProductService _productService) {
+         this.productService = _productService;
     }
 
-    @GetMapping
-    public List<ProductDTO> getAllProducts(){
-        return this.productsService.getAllProducts();
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable long id) throws Exception{
+        return ResponseEntity.ok(this.productService.getProductById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO){
+        return ResponseEntity.ok(this.productService.createProduct(productDTO));
     }
 
 }

@@ -1,0 +1,27 @@
+JPA provides a rich set of annotations for mapping Java objects to relational database tables. Beyond @MappedSuperclass, which allows for inheritance of persistent properties without creating a table for the superclass, other key annotations include:
+Entity Mapping:
+@Entity: Marks a class as a JPA entity, indicating that it represents a table in the database.
+@Table: Specifies the name of the database table to which an entity is mapped.
+@Id: Designates the primary key field of an entity.
+@GeneratedValue: Configures the strategy for generating primary key values (e.g., IDENTITY, AUTO, SEQUENCE, TABLE).
+@Column: Specifies properties of a database column, such as name, length, nullability, and uniqueness.
+@Transient: Marks a field as non-persistent, meaning it will not be stored in the database.
+Relationship Mapping:
+@OneToOne: Defines a one-to-one relationship between two entities.
+@OneToMany: Defines a one-to-many relationship.
+@ManyToOne: Defines a many-to-one relationship.
+@ManyToMany: Defines a many-to-many relationship.
+@JoinColumn: Specifies the foreign key column used in a relationship.
+@JoinTable: Used in @ManyToMany relationships to define the join table.
+Inheritance Mapping:
+@Inheritance: Specifies the inheritance strategy for an entity hierarchy (e.g., SINGLE_TABLE, JOINED, TABLE_PER_CLASS).
+@DiscriminatorColumn: Used with SINGLE_TABLE inheritance to define the column that differentiates subclasses.
+@DiscriminatorValue: Specifies the value in the discriminator column that corresponds to a particular subclass.
+Other Useful Annotations:
+@Embeddable: Marks a class whose instances can be embedded in other entities.
+@Embedded: Used to embed an @Embeddable object within an entity.
+@AttributeOverride: Overrides the mapping of an embedded attribute or an attribute inherited from a @MappedSuperclass.
+@Version: Designates a version field for optimistic locking.
+@Temporal: Specifies the database type for java.util.Date and java.util.Calendar fields (e.g., DATE, TIME, TIMESTAMP).
+@Lob: Maps a large object (e.g., byte[], String) to a BLOB or CLOB database type.
+@Enumerated: Specifies how an enum type should be persisted (e.g., ORDINAL, STRING).

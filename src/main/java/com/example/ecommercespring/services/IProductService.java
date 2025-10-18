@@ -1,10 +1,9 @@
 package com.example.ecommercespring.services;
-
 import com.example.ecommercespring.dto.ProductDTO;
 
-import java.util.List;
+public interface IProductService {
 
-public interface IProductsService {
+    ProductDTO getProductById(Long id) throws Exception;
 
-    List<ProductDTO> getAllProducts();
+    ProductDTO createProduct(ProductDTO productDTO);
 }
