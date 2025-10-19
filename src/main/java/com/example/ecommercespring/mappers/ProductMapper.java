@@ -1,7 +1,10 @@
 package com.example.ecommercespring.mappers;
 import com.example.ecommercespring.dto.ProductDTO;
+import com.example.ecommercespring.dto.ProductWithCategoryDTO;
 import com.example.ecommercespring.entity.Category;
 import com.example.ecommercespring.entity.Product;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductMapper {
 
@@ -35,5 +38,27 @@ public class ProductMapper {
                 .brand(productDto.getBrand())
                 .popular(productDto.isPopular())
                 .build();
+    }
+
+    public static ProductWithCategoryDTO toProductWithCategoryDTO(Product product) {
+        return ProductWithCategoryDTO.builder()
+                .id(product.getId())
+                .image(product.getImage())
+                .color(product.getColor())
+                .price(product.getPrice())
+                .description(product.getDescription())
+                .discount(product.getDiscount())
+                .model(product.getModel())
+                .title(product.getTitle())
+                .brand(product.getBrand())
+                .popular(product.isPopular())
+                .category(CategoryMapper.toDto(product.getCategory()))
+                .build();
+    }
+
+    public static List<ProductDTO> toDtoList(List<Product> products) {
+        return products.stream()
+                .map(ProductMapper::toDto)
+                .collect(Collectors.toList());
     }
 }

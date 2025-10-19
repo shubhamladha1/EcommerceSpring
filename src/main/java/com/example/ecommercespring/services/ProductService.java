@@ -1,5 +1,6 @@
 package com.example.ecommercespring.services;
 import com.example.ecommercespring.dto.ProductDTO;
+import com.example.ecommercespring.dto.ProductWithCategoryDTO;
 import com.example.ecommercespring.entity.Category;
 import com.example.ecommercespring.entity.Product;
 import com.example.ecommercespring.mappers.ProductMapper;
@@ -34,6 +35,14 @@ public class ProductService implements IProductService {
 
         Product saved = repo.save(ProductMapper.toEntity(productDTO,category));
         return ProductMapper.toDto(saved);
+    }
+
+    @Override
+    public ProductWithCategoryDTO getProductWithCategory(Long id) throws Exception {
+
+        Product product = repo.findById(id)
+                .orElseThrow(() -> new Exception("Product not found"));
+        return ProductMapper.toProductWithCategoryDTO(product);
     }
 
 }
