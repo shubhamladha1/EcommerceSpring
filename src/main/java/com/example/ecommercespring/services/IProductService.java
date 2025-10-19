@@ -4,7 +4,7 @@ import com.example.ecommercespring.dto.ProductWithCategoryDTO;
 
 public interface IProductService {
 
-    ProductDTO getProductById(Long id) throws Exception;
+    ProductDTO getProductById(Long id);
     ProductDTO createProduct(ProductDTO productDTO) throws Exception;
     ProductWithCategoryDTO getProductWithCategory(Long id) throws  Exception;
 }

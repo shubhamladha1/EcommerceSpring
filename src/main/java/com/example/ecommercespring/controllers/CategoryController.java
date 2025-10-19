@@ -18,7 +18,6 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> getAllCategories() throws Exception{
-
         List<CategoryDTO> result = this.categoryService.getAllCategories();
         return ResponseEntity.ok(result);
     }

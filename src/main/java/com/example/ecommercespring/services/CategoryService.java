@@ -6,7 +6,6 @@ import com.example.ecommercespring.entity.Category;
 import com.example.ecommercespring.mappers.CategoryMapper;
 import com.example.ecommercespring.mappers.ProductMapper;
 import com.example.ecommercespring.repository.CategoryRepository;
-import com.example.ecommercespring.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +15,9 @@ import java.util.stream.Collectors;
 public class CategoryService implements ICategoryService{
 
     private final CategoryRepository repo;
-    private final ProductRepository productRepo;
 
-    public CategoryService(CategoryRepository _repo, ProductRepository _productRepo){
+    public CategoryService(CategoryRepository _repo){
         this.repo = _repo;
-        this.productRepo = _productRepo;
     }
 
     @Override
